@@ -1,6 +1,6 @@
 # Telugu Transliteration and Translation Dataset Proposal
 
-This contribution proposes a Telugu transliteration and translation dataset proposal in the import-friendly NDJSON shape used by quran-mcp's edition content pipeline.
+This contribution provides a Telugu transliteration and translation dataset in the import-friendly NDJSON shape used by quran-mcp's edition content pipeline.
 
 ## Files
 
@@ -14,7 +14,7 @@ This contribution proposes a Telugu transliteration and translation dataset prop
 - `edition.te-telugu.json`
   - Proposed edition metadata entry for `src/quran_mcp/data/editions.json`
 - `empty-ayahs-reference.txt`
-  - Empty in this update because all ayahs in the source now have translation text
+  - Intentionally empty in this update because all ayahs in the source have translation text
 
 ## Data quality notes
 
