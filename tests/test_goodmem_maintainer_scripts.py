@@ -22,8 +22,21 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 MEMORY_RETRIEVE_PATH = REPO_ROOT / "scripts" / ".maintainer" / "goodmem" / "memory_retrieve.py"
 MEMORY_CREATE_PATH = REPO_ROOT / "scripts" / ".maintainer" / "goodmem" / "memory_create.py"
 
-memory_retrieve = _load_module("test_memory_retrieve", MEMORY_RETRIEVE_PATH)
-memory_create = _load_module("test_memory_create", MEMORY_CREATE_PATH)
+_missing_scripts = [
+    path.relative_to(REPO_ROOT).as_posix()
+    for path in (MEMORY_RETRIEVE_PATH, MEMORY_CREATE_PATH)
+    if not path.exists()
+]
+if _missing_scripts:
+    pytestmark = pytest.mark.skip(
+        reason="Maintainer GoodMem scripts are gitignored and not present in this checkout: "
+        + ", ".join(_missing_scripts),
+    )
+    memory_retrieve: Any = None
+    memory_create: Any = None
+else:
+    memory_retrieve = _load_module("test_memory_retrieve", MEMORY_RETRIEVE_PATH)
+    memory_create = _load_module("test_memory_create", MEMORY_CREATE_PATH)
 
 
 def test_retrieve_memories_filter_only_defaults_limit_and_query(monkeypatch: pytest.MonkeyPatch) -> None:
