@@ -5,7 +5,7 @@ Unit tests live here. Integration and end-to-end tests that hit the real MCP sta
 | File | Covers | Purpose |
 |---|---|---|
 | `README.md` | Test directory index | Documents the current unit/integration test layout and file ownership. |
-| `test_config_settings.py` | Config YAML merge, env override logging, nested list env parsing | Verifies the current settings system from scratch, including nested override behavior and both comma-list and JSON-array env parsing. |
+| `test_config_settings.py` | Config YAML merge, env override logging, nested list env parsing | Verifies the current settings system from focused snippets, including nested override behavior and both comma-list and JSON-array env parsing. |
 | `test_profiles.py` | Visibility tag resolution and relay enablement | Locks in profile/expose-tag precedence and relay defaults. |
 | `test_middleware_stack.py` | FastMCP middleware ordering and conditional inclusion | Verifies which protocol middleware are present under different settings combinations. |
 | `test_site.py` | Public site manifest validation and helper behavior | Covers missing-asset validation, landing-page negotiation, and directory route safety. |
@@ -24,7 +24,7 @@ Unit tests live here. Integration and end-to-end tests that hit the real MCP sta
 | `test_turn_manager.py` | `lib/db/turn_manager.py` — pure cache/state ops | Tests LRU eviction, call index assignment, state lookup, mark_call_completed, clear_cache. |
 | `test_health.py` | `lib/site/health.py` — pure helpers and cache | Tests nonce extraction, text block parsing, grounding suppression check, cache get/set/expiry. |
 | `test_goodmem_filters.py` | `lib/goodmem.py` — filter expression DSL | Tests type inference, filter parsing, SQL expression building, IN clauses, range/cross-field AND, expression combining. |
-| `test_goodmem_maintainer_scripts.py` | `scripts/.maintainer/goodmem/{memory_create,memory_retrieve}.py` | Tests retrieval defaults/limit validation and non-fatal subprocess failure handling for maintainer GoodMem scripts. |
+| `test_goodmem_maintainer_scripts.py` | `scripts/.maintainer/goodmem/{memory_create,memory_retrieve}.py` | Tests retrieval defaults/limit validation and non-fatal subprocess failure handling when maintainer GoodMem scripts are present. |
 | `test_llm_helpers.py` | `lib/llm/` — helpers and exception hierarchy | Tests context window error detection, token extraction, prompt validation, truncation, exception construction. |
 | `test_sampling_helpers.py` | `lib/sampling/handler.py` — content conversion helpers and provider fallback handlers | Tests model preference parsing, deep merge, role normalization, image/audio format detection, OpenAI message building, and hermetic OpenAI/Anthropic/Gemini/OpenRouter handler behavior. |
 | `test_fetch_orchestration.py` | `mcp/tools/_fetch_orchestration.py` — shared fetch-wrapper boundary | Tests continuation/request decoding, invalid-request contract mapping, pagination metadata shaping, ayah recomputation, and warning normalization helpers. |
@@ -36,7 +36,7 @@ Unit tests live here. Integration and end-to-end tests that hit the real MCP sta
 | `test_translation_fetch.py` | `lib/translation/fetch.py` — edition resolution | Tests static registry resolution by ID and language code. |
 | `test_morphology.py` | `lib/morphology/` — input validation and pure functions | Tests parameter validation for morphology/paradigm/concordance and _categorize_stem, _safe_int. |
 | `test_pagination.py` | `lib/presentation/pagination.py` — paginate, continuation tokens | Tests pagination math, continuation token round-trip, tamper detection, expiry, token cap enforcement. |
-| `test_asset_contracts.py` | Asset file contracts | Verifies skill.md and grounding_rules.md exist and contain expected content. |
+| `test_asset_contracts.py` | Asset file contracts | Verifies committed text assets and, when built, the generated mushaf app asset contract. |
 | `test_public_facades.py` | Package exports, resource registrars, manifest contracts, and shared tool error helpers | Verifies top-level package reexports, resource readback, prompt no-op registration, manifest route contracts, GoodMem facade identity, and shared error helper prefixes. |
 | `test_edition_fetcher.py` | `lib/editions/fetcher/` — ayah condition building | Tests SQL condition building, range detection, edition filtering. |
 | `test_edition_registry.py` | `lib/editions/registry.py` — edition resolution | Tests exact/code/language/fuzzy resolution, case insensitivity, unresolved tracking. |

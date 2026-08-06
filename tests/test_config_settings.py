@@ -4,13 +4,21 @@ import logging
 from textwrap import dedent
 
 import pytest
+import yaml
 
 from quran_mcp.lib.config.settings import clear_settings_cache, get_settings
 
 
+def _with_minimal_required_config(config: str) -> str:
+    data = yaml.safe_load(dedent(config)) or {}
+    server = data.setdefault("server", {})
+    server.setdefault("port", 8088)
+    return yaml.safe_dump(data, sort_keys=False)
+
+
 def _write_config(tmp_path, base: str, local: str | None = None) -> str:
     config_path = tmp_path / "config.yml"
-    config_path.write_text(dedent(base).strip() + "\n", encoding="utf-8")
+    config_path.write_text(_with_minimal_required_config(base), encoding="utf-8")
     if local is not None:
         (tmp_path / "config.local.yml").write_text(
             dedent(local).strip() + "\n",
