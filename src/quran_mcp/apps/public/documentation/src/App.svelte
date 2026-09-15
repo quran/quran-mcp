@@ -823,7 +823,7 @@
   <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:60vh;text-align:center;font-family:'JetBrains Mono',monospace;color:var(--muted)">
     <h1 style="font-size:1.2rem;margin-bottom:12px;color:var(--text)">Failed to load documentation</h1>
     <p>{error}</p>
-    <p><a href="/docs" style="color:var(--green)">View static documentation</a></p>
+    <p><a href="/documentation" style="color:var(--green)">View static documentation</a></p>
   </div>
 {:else}
   <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:60vh;text-align:center;font-family:'JetBrains Mono',monospace;color:var(--muted)">
