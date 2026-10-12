@@ -125,13 +125,19 @@ class GroundingGatekeeperMiddleware(Middleware):
 
     @staticmethod
     def _sanitize_nonce(raw: str) -> str:
-        """Strip XML wrapper and whitespace from a nonce value.
+        """Strip XML wrapper, key-value prefixes, markdown backticks, and whitespace.
 
-        AIs may copy the XML tag verbatim as the parameter value, e.g.
-        ``<grounding_nonce>gnd-abc123</grounding_nonce>``.
+        AIs may copy the XML tag, markdown backticks, or key-value format verbatim
+        as the parameter value, e.g. ``<grounding_nonce>gnd-abc123</grounding_nonce>``,
+        ``GROUNDING_NONCE: gnd-abc123``, or ```gnd-abc123```.
         """
         raw = raw.strip()
-        if raw.startswith("<grounding_nonce>") and raw.endswith("</grounding_nonce>"):
+        if raw.startswith("`") and raw.endswith("`") and len(raw) >= 2:
+            raw = raw.strip("`").strip()
+        if raw.upper().startswith("GROUNDING_NONCE:"):
+            raw = raw[16:].strip()
+        lower = raw.lower()
+        if lower.startswith("<grounding_nonce>") and lower.endswith("</grounding_nonce>"):
             raw = raw[17:-18].strip()
         return raw
 
