@@ -85,3 +85,58 @@ class TestNonceWithoutPrefix:
 
     def test_wrong_prefix_returns_false(self, gate):
         assert gate._validate_nonce("xyz-abcdef0123456789") is False
+
+
+class TestExtendedNonceSanitization:
+    def test_markdown_backtick_wrapped_nonce(self, gate):
+        nonce = gate._issue_nonce()
+        wrapped = f"`{nonce}`"
+        sanitized = gate._sanitize_nonce(wrapped)
+        assert sanitized == nonce
+        assert gate._validate_nonce(sanitized) is True
+
+    def test_key_value_prefix_stripped(self, gate):
+        nonce = gate._issue_nonce()
+        wrapped = f"GROUNDING_NONCE: {nonce}"
+        sanitized = gate._sanitize_nonce(wrapped)
+        assert sanitized == nonce
+        assert gate._validate_nonce(sanitized) is True
+
+    def test_case_insensitive_xml_tags_stripped(self, gate):
+        nonce = gate._issue_nonce()
+        wrapped = f"<GROUNDING_NONCE>{nonce}</GROUNDING_NONCE>"
+        sanitized = gate._sanitize_nonce(wrapped)
+        assert sanitized == nonce
+        assert gate._validate_nonce(sanitized) is True
+
+    def test_mixed_case_xml_tags_stripped(self, gate):
+        nonce = gate._issue_nonce()
+        wrapped = f"<Grounding_Nonce>{nonce}</Grounding_Nonce>"
+        sanitized = gate._sanitize_nonce(wrapped)
+        assert sanitized == nonce
+        assert gate._validate_nonce(sanitized) is True
+
+    def test_multiline_xml_wrapped_nonce(self, gate):
+        nonce = gate._issue_nonce()
+        wrapped = f"<grounding_nonce>\n  {nonce}\n</grounding_nonce>"
+        sanitized = gate._sanitize_nonce(wrapped)
+        assert sanitized == nonce
+        assert gate._validate_nonce(sanitized) is True
+
+
+class TestConcurrentNonceOperations:
+    @pytest.mark.asyncio
+    async def test_concurrent_issuance_and_validation(self, gate):
+        import asyncio
+
+        async def issue_and_validate():
+            async with gate._lock:
+                nonce = gate._issue_nonce()
+            sanitized = gate._sanitize_nonce(f"  <grounding_nonce>{nonce}</grounding_nonce>  ")
+            async with gate._lock:
+                return gate._validate_nonce(sanitized)
+
+        results = await asyncio.gather(*[issue_and_validate() for _ in range(50)])
+        assert all(results) is True
+        assert len(results) == 50
+
