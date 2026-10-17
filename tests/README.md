@@ -43,6 +43,7 @@ Unit tests live here. Integration and end-to-end tests that hit the real MCP sta
 | `test_grounding_gate.py` | `middleware/grounding_gate.py` — nonce lifecycle | Tests nonce issuance, validation, XML stripping, LRU eviction, authority-A, warning dedup. |
 | `test_grounding_nonce_edge_cases.py` | Grounding nonce edge cases | Tests nonce reuse across tools, nonce-free fallback behavior. |
 | `test_search_common.py` | `lib/search/common.py` — search utilities | Tests language detection, ayah key parsing, filter building, memory-to-data conversion. |
+| `test_quran_arabic_enrichment.py` | Quran search Arabic integrity and error boundary | Offline canonical coverage, bounded shared-fetch recovery, error mapping, and attribution regressions. |
 | `test_tafsir_html_clean.py` | Tafsir HTML cleaning | Tests tag stripping, entity decoding, footnote formatting. |
 | `test_documentation_generator.py` | `lib/documentation/generator.py` — pure data utilities | Tests _type_label (12 branches), string truncation, list compaction, display transform, tag filtering, parameter rows, colorize_call, colorize_json_value. |
 | `test_qmd_parser.py` | `lib/documentation/qmd_parser.py` — QMD → HTML conversion | Tests frontmatter splitting, body block conversion, verse rendering, table rendering, inline text/typography, end-to-end parse_qmd with real QMD file. |
