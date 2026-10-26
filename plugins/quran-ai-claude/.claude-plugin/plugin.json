@@ -1,0 +1,30 @@
+{
+  "name": "quran-ai",
+  "displayName": "quran.ai",
+  "version": "1.0.0",
+  "description": "Study the Quran with Claude in an interactive reader, with answers grounded in verified Quran text, translations, authentic tafsir, and word morphology from quran.com, named sources, and links to the cited ayahs.",
+  "author": {
+    "name": "quran.com",
+    "url": "https://quran.com"
+  },
+  "homepage": "https://quran.ai",
+  "repository": "https://github.com/quran/quran-mcp",
+  "license": "LicenseRef-QFGPL-1.0",
+  "keywords": [
+    "quran",
+    "tafsir",
+    "islam",
+    "قرآن",
+    "تفسير",
+    "إسلام",
+    "muslim",
+    "مسلم",
+    "mushaf",
+    "مصحف",
+    "تدبر",
+    "آية",
+    "سورة",
+    "ayah",
+    "surah"
+  ]
+}
