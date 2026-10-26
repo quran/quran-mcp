@@ -1,2 +1,6 @@
-# Normalize line endings
-* text=auto
+# Normalize line endings in source, tests and scripts. Keep the rule off the
+# repository root and plugins/: Anthropic's plugin directory rejects text
+# attributes on anything its validator reads beside the plugin path.
+src/** text=auto
+tests/** text=auto
+scripts/** text=auto
