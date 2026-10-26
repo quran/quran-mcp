@@ -8,6 +8,7 @@
     "url": "https://quran.com"
   },
   "homepage": "https://quran.ai",
+  "privacyPolicyUrl": "https://mcp.quran.ai/privacy",
   "repository": "https://github.com/quran/quran-mcp",
   "license": "LicenseRef-QFGPL-1.0",
   "keywords": [
