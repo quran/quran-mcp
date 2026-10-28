@@ -12,10 +12,13 @@
     if (!block) return;
     const code = block.querySelector("code");
     if (!code) return;
+    if (!navigator.clipboard?.writeText) return;
     navigator.clipboard.writeText(code.textContent ?? "").then(() => {
       const prev = btn.textContent;
       btn.textContent = "copied";
       setTimeout(() => { btn.textContent = prev; }, 1500);
+    }).catch(() => {
+      // Clipboard write rejected (e.g. permission denied) — leave button unchanged.
     });
   }
 </script>

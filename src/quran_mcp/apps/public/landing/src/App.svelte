@@ -37,9 +37,13 @@
   });
 
   function copyUrl() {
-    navigator.clipboard.writeText("https://mcp.quran.ai/");
-    copied = true;
-    setTimeout(() => { copied = false; }, 1500);
+    if (!navigator.clipboard?.writeText) return;
+    navigator.clipboard.writeText("https://mcp.quran.ai/").then(() => {
+      copied = true;
+      setTimeout(() => { copied = false; }, 1500);
+    }).catch(() => {
+      // Clipboard write rejected (e.g. permission denied) — keep `copied` false.
+    });
   }
 
   function copyCode(btn: HTMLButtonElement) {
@@ -47,9 +51,13 @@
     if (!block) return;
     const code = block.querySelector('code');
     if (!code) return;
-    navigator.clipboard.writeText(code.textContent || '');
-    btn.textContent = 'copied!';
-    setTimeout(() => { btn.textContent = 'copy'; }, 1500);
+    if (!navigator.clipboard?.writeText) return;
+    navigator.clipboard.writeText(code.textContent || '').then(() => {
+      btn.textContent = 'copied!';
+      setTimeout(() => { btn.textContent = 'copy'; }, 1500);
+    }).catch(() => {
+      // Clipboard write rejected (e.g. permission denied) — leave button unchanged.
+    });
   }
 
   // ── Collapsible system (matches documentation page exactly) ──
