@@ -1,9 +1,11 @@
 from __future__ import annotations
 
+from html.parser import HTMLParser
 from pathlib import Path
 
 import pytest
 
+from quran_mcp.lib.assets import asset_text
 from quran_mcp.lib.site import handlers, manifest
 
 
@@ -18,6 +20,25 @@ def _scope(path: str, *, method: str = "GET", accept: str | None = None) -> dict
         "headers": headers,
         "client": ("127.0.0.1", 12345),
     }
+
+
+class _HrefParser(HTMLParser):
+    def __init__(self) -> None:
+        super().__init__()
+        self.hrefs: list[str] = []
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        if tag != "a":
+            return
+        for name, value in attrs:
+            if name == "href" and value is not None:
+                self.hrefs.append(value)
+
+
+def _hrefs(html: str) -> list[str]:
+    parser = _HrefParser()
+    parser.feed(html)
+    return parser.hrefs
 
 
 def test_validate_required_assets_reports_missing_required_file(
@@ -50,6 +71,14 @@ def test_should_serve_landing_for_browser_requests_only() -> None:
     assert handlers._should_serve_landing(_scope("/", accept="text/event-stream")) is False
     assert handlers._should_serve_landing(_scope("/documentation", accept="text/html")) is False
     assert handlers._should_serve_landing(_scope("/", method="POST", accept="text/html")) is False
+
+
+def test_support_page_docs_link_targets_declared_documentation_route() -> None:
+    hrefs = _hrefs(asset_text("support.html"))
+
+    assert "/docs" not in hrefs
+    assert "/documentation" in hrefs
+    assert "/documentation" in manifest.routes["pages"]
 
 
 def test_dir_response_blocks_traversal_and_unknown_extensions(tmp_path: Path) -> None:
