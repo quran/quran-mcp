@@ -1,0 +1,6 @@
+interface:
+  display_name: "quran.ai interactive study"
+  short_description: "Read and study the Quran"
+  icon_small: "./assets/icon.svg"
+  icon_large: "./assets/icon.svg"
+  default_prompt: "Open the Quran reader."

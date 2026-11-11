@@ -18,9 +18,9 @@ user's request to shape the experience.
 
 | Starter | Approach |
 |---|---|
-| Guide my Qur'an discovery journey with quran.ai's reader and study tools, drawing on our past conversations to suggest some initial topics and passages I might be interested in exploring. | A personal discovery journey. |
+| Guide my Qur'an journey with quran.ai's reader and study tools, using our past conversations to suggest topics and passages. | A personal discovery journey. |
 | Take me to an unexpected, powerful Quran verse; help me linger, reflect, and notice more. | A fresh passage for reflection. |
-| What does the Quran claim about God? Help me explore its claims with an open mind, and let my honest follow-up questions guide where we go next. | An open inquiry about God. |
+| Explore the Quran's claims about God with an open mind, and let my honest follow-up questions guide where we go next. | An open inquiry about God. |
 
 **A personal discovery journey.** Use relevant interests, questions, language
 preferences, and circumstances from the current conversation or available
@@ -86,14 +86,14 @@ returns to the same study loop rather than restarting onboarding.
 
 Defaults are ready to use. Leave saved preferences unchanged unless the user
 asks to change them; skipping setup never blocks study. New readers follow
-System appearance (Navy or Ivory), dock contextual meaning at the top in Word
-meanings mode, and start with Study tools open in Quick send mode. The reader
-guide opens only when requested.
+the System appearance (Navy when the host or device is dark, Ivory when it is
+light), dock contextual meaning at the top matching
+the selection, and start with Study tools open in Quick send mode.
 An empty meaning lane is initially collapsed; Arabic language or region hints
-can also make Collapse lane default to on. Existing saved choices take precedence.
+can also turn Start minimized on by default. Existing saved choices take precedence.
 
 For **Set up** without a more specific goal, give a brief introduction through
-the personal starting-point flow; no intake questionnaire is required. If the
+**A personal discovery journey** above; no intake questionnaire is required. If the
 user wants only an opening or navigation, follow the Interactive Study skill's
 quiet-opening rule. Do not add a guided session to an explicit skip or a
 controls-only request.

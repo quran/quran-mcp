@@ -1,8 +1,0 @@
-{
-  "mcpServers": {
-    "quran-ai": {
-      "type": "http",
-      "url": "https://mcp.quran.ai"
-    }
-  }
-}

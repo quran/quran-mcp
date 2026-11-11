@@ -1,14 +1,17 @@
 {
   "name": "quran-ai",
   "displayName": "quran.ai",
-  "version": "1.0.0",
-  "description": "Study the Quran with Claude in an interactive reader, with answers grounded in verified Quran text, translations, authentic tafsir, and word morphology from quran.com, named sources, and links to the cited ayahs.",
+  "version": "1.1.71",
+  "description": "An interactive Quran reader and study tools inside Claude. Get answers grounded in verified Quran text, translations, authentic tafsir, and other data from quran.com, with named sources and direct links to the cited ayahs.",
   "author": {
     "name": "quran.com",
     "url": "https://quran.com"
   },
   "homepage": "https://quran.ai",
+  "documentationUrl": "https://mcp.quran.ai/documentation",
+  "supportUrl": "https://mcp.quran.ai/support",
   "privacyPolicyUrl": "https://mcp.quran.ai/privacy",
+  "termsOfServiceUrl": "https://mcp.quran.ai/terms",
   "repository": "https://github.com/quran/quran-mcp",
   "license": "LicenseRef-QFGPL-1.0",
   "keywords": [

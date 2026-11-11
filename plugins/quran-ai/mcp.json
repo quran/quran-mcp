@@ -1,0 +1,19 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
+  "mcpServers": {
+    "quran.ai": {
+      "type": "streamable-http",
+      "url": "https://mcp.quran.ai",
+      "extensions": {
+        "com.openai": {
+          "auth": {
+            "type": "mixed",
+            "client": {
+              "mode": "cimd"
+            }
+          }
+        }
+      }
+    }
+  }
+}

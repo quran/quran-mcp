@@ -1,0 +1,55 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "quran-ai",
+  "version": "1.1.71",
+  "description": "An interactive Quran reader and study tools inside ChatGPT. Get answers grounded in verified Quran text, translations, authentic tafsir, and other data from quran.com, with named sources and direct links to the cited ayahs in the reader.",
+  "author": {
+    "name": "quran.com",
+    "url": "https://quran.com"
+  },
+  "homepage": "https://quran.ai",
+  "repository": "https://github.com/quran/quran-mcp",
+  "license": "LicenseRef-QFGPL-1.0",
+  "keywords": [
+    "quran",
+    "tafsir",
+    "islam",
+    "قرآن",
+    "تفسير",
+    "إسلام",
+    "muslim",
+    "مسلم",
+    "mushaf",
+    "مصحف",
+    "تدبر",
+    "آية",
+    "سورة",
+    "ayah",
+    "surah"
+  ],
+  "extensions": {
+    "com.openai": {
+      "onboardingSkill": "./skills/onboarding/SKILL.md",
+      "interface": {
+        "displayName": "quran.ai",
+        "shortDescription": "Interactive tools by quran.com",
+        "longDescription": "Turn ChatGPT into your AI-powered Quran study companion — Read. Select. Ask. Discover.\n\nSelect a passage in the interactive reader and ask ChatGPT about it, with your selection carried into the conversation as context. Follow links in ChatGPT’s responses directly back to the relevant passages in the reader. Trace themes across all 114 surahs, compare how classical and modern scholars interpret the same verse, unpack the depth and precision behind the Quran's eloquence, and contextualize difficult passages with real, authentic tafsir commentary. The plugin retrieves Quran text, translations, and tafsir from quran.com, with named sources and links to cited passages in the reader.",
+        "developerName": "quran.com",
+        "category": "Education & Research",
+        "capabilities": [
+          "Interactive",
+          "Search"
+        ],
+        "logo": "./assets/listing-navy.png",
+        "logoDark": "./assets/icon.png",
+        "composerIcon": "./assets/composer-96.png",
+        "websiteURL": "https://quran.ai",
+        "defaultPrompt": [
+          "Guide my Qur'an journey with quran.ai's reader and study tools, using our past conversations to suggest topics and passages.",
+          "Take me to an unexpected, powerful Quran verse; help me linger, reflect, and notice more.",
+          "Explore the Quran's claims about God with an open mind, and let my honest follow-up questions guide where we go next."
+        ]
+      }
+    }
+  }
+}

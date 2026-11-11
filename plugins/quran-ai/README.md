@@ -13,8 +13,9 @@ sources, and links each cited ayah.
   Quran, translation, and tafsir search and retrieval, word morphology and
   concordance, edition listings, and the interactive reader.
 - **Grounding rules skill**: tells Claude how to quote, cite, and attribute
-  Quran text, translations, and tafsir faithfully. It also keeps scholarly
-  interpretation separate from Claude's own reflection.
+  Quran text, translations, and tafsir faithfully, and how to link cited ayahs
+  and tafsir passages. It also keeps scholarly interpretation separate from
+  Claude's own reflection.
 - **Interactive study skill**: opens the reader, follows your selections in it,
   and keeps the study loop going: read, select, ask, discover.
 - **Onboarding skill**: three ways to begin (a personal discovery journey, an
@@ -24,7 +25,9 @@ sources, and links each cited ayah.
 ## Use it
 
 After adding the plugin, connect the quran.ai connector from the plugin's
-**Connectors** tab. No account is needed. Then ask Claude things like:
+**Connectors** tab. No account is needed to study. Signing in with a Quran
+Foundation account is optional and keeps your notes, saved places, and reader
+settings across conversations. Then ask Claude things like:
 
 - "Open the Quran reader at Surah Al-Kahf."
 - "Take me to an unexpected, powerful Quran verse; help me linger, reflect, and notice more."
@@ -40,21 +43,25 @@ on their own. Every request goes through the quran.ai connector to the hosted
 service at `https://mcp.quran.ai`, which:
 
 - receives the tool inputs Claude sends, such as verse references, search
-  terms, and your reader selections, and logs tool requests with their inputs
-  and results for operation and improvement;
+  terms, note text, and your reader selections, and logs tool requests with
+  their inputs for operation and improvement;
 - sends search text to Google's Gemini API to match passages by meaning, and
   may send Arabic words and matching verse text to Voyage AI to rank
   concordance results;
 - saves your reader position, selection, and options for 180 days after their
-  last change, linked to a one-way hash of the conversation address Claude
-  gives the reader;
+  last change;
+- if you sign in with a Quran Foundation account, stores the email address,
+  name, and other profile details Quran Foundation provides, together with
+  your notes, saved places, and settings, until they are deleted;
 - stores feedback only when you ask Claude to send it.
 
-It doesn't ask for your name or email address and doesn't build advertising
-profiles. The reader loads Quran page fonts from Quran Foundation's font server.
-Full details and retention periods are in the
-[privacy policy](https://mcp.quran.ai/privacy). Send privacy questions or
-deletion requests to support@quran.ai. For help, see
+The reader loads Quran page fonts and recitation audio from Quran Foundation's
+servers. The service doesn't sell personal information or build advertising
+profiles. Full details and retention periods are in the
+[privacy policy](https://mcp.quran.ai/privacy), and use of the service is
+governed by the [terms of service](https://mcp.quran.ai/terms). Send privacy
+questions or deletion requests to nour@quran.com. For help, see the
+[documentation](https://mcp.quran.ai/documentation) and
 [support](https://mcp.quran.ai/support).
 
 ## Sources and license
