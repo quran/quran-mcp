@@ -87,10 +87,12 @@ returns to the same study loop rather than restarting onboarding.
 Defaults are ready to use. Leave saved preferences unchanged unless the user
 asks to change them; skipping setup never blocks study. New readers follow
 the System appearance (Navy when the host or device is dark, Ivory when it is
-light), dock contextual meaning at the top matching
-the selection, and start with Study tools open in Quick send mode.
-An empty meaning lane is initially collapsed; Arabic language or region hints
-can also turn Start minimized on by default. Existing saved choices take precedence.
+light) and open full screen where the host can show it. The recitation lane,
+Study tools in Quick send mode and the translation panel, which matches the
+selection, start open at the top, with Prev and Next at the top of the right
+edge. On a wide reader Study tools starts at the right side instead. These
+defaults are the same for every language and country. Existing saved choices
+take precedence.
 
 For **Set up** without a more specific goal, give a brief introduction through
 **A personal discovery journey** above; no intake questionnaire is required. If the

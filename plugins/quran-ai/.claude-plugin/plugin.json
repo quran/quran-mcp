@@ -1,7 +1,7 @@
 {
   "name": "quran-ai",
   "displayName": "quran.ai",
-  "version": "1.1.71",
+  "version": "1.1.72",
   "description": "An interactive Quran reader and study tools inside Claude. Get answers grounded in verified Quran text, translations, authentic tafsir, and other data from quran.com, with named sources and direct links to the cited ayahs.",
   "author": {
     "name": "quran.com",

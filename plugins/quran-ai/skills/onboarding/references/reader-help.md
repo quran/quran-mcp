@@ -21,21 +21,26 @@ or usage question.
   to open settings and `interactive_study_settings_open`
   is available, use it; do not invent settings tools or claim a preference was
   saved without confirmation from the settings surface.
-- **Selection:** briefly tap a different word to move the cursor and active color
-  there without a bounded selection. Briefly tap the currently active colored
-  word to keep that precise position, release any selection and show its whole
-  ayah. Its own ayah number or margin does the same; another ayah's number or
-  margin moves to that ayah's first word. Hold a word to the first threshold
-  (400 ms by default), then release for a bounded whole-ayah selection. Keep
-  holding to the later word threshold (800 ms by default), then release for a
-  bounded word. The two thresholds are independently adjustable in Experiments.
-  The shown stage commits on release, not while the finger is still down.
-  Drag across words for a phrase; on touch a vertical movement scrolls, while
-  a deliberate sideways movement out of the word along its line selects.
-  Drag a selected span's first or last word to resize it. A short tap beside a
-  span focuses that word and clears the span; it does not extend it. Holds can
-  add ayahs or words to existing selections. A hold on an already selected
-  ayah previews removing that ayah; release commits it. Shift extends a range;
+- **Selection:** with Content on Auto and nothing selected, briefly tap a word
+  in the active ayah to focus that word and show its word meanings; tap the
+  focused word again to return to the whole ayah and its translation. A tap on
+  a word in another ayah moves there and keeps what the panel was showing.
+  An ayah number moves the cursor to the start of that ayah. While the
+  recitation plays, a tap on any word moves the recitation to that word and
+  keeps what the panel was showing; a tap outside a selection still clears it. Hold a word still to step through three stages, all
+  timed from the moment the finger goes down: the whole ayah (618 ms by
+  default), the word alone (1000 ms), then cancel (1618 ms), which leaves
+  everything as it was; the stages repeat while the hold continues. The shown
+  stage commits on release. The base time and the multiplier between stages are
+  adjustable in Experiments. A tap on a word inside a selection keeps the
+  selection and moves the cursor there, which is where listening starts (inside
+  a selection of whole ayahs, to the start of the tapped ayah while silent); a tap
+  on a word outside clears the selection and focuses that word. A tap never
+  grows or shrinks a selection: hold and drag to resize it, starting inside
+  it, or starting outside and releasing inside it. A hold and drag entirely
+  outside adds a separate selection. Tapping a selection of exactly one word
+  clears it. On touch a vertical movement scrolls, while a deliberate sideways
+  movement out of the word along its line selects. Shift extends a range;
   Ctrl/Cmd adds or removes selected words, phrases or whole ayahs.
 - **Ask with passages:** **Study tools** starts open in **Quick send**: type a
   question and send it with the current selection. Choose **Ledger** to keep
@@ -51,16 +56,17 @@ or usage question.
   The upper and lower corner controls move backward and forward; hold to
   keep moving. Reader → Navigation → Button placement shows whether they move
   by ayah or by screen.
-- **Contextual meaning:** in Auto, a bounded word selection shows word meanings
-  and whole-ayah selections show translations. Without a selection, tapping a
-  different word shows word meanings; tapping the active colored word, its ayah
-  number or its margin shows the whole-ayah translation while keeping the precise
-  cursor. These actions do not change the saved Content preference. Settings → Translation → Content can keep
+- **Contextual meaning:** in Auto, a selection of whole ayahs shows
+  translations and any selection that cuts through an ayah shows word meanings.
+  Without a selection, focusing a word shows word meanings and tapping the
+  focused word shows the whole-ayah translation again. Moving to another ayah,
+  by Prev, Next or the arrow keys, keeps whichever of the two was showing.
+  These actions do not change the saved Content preference. Settings → Translation → Content can keep
   it on Whole ayah or Word by word instead, and also provides Translator, Panel
   position (Top or Bottom), and Start minimized. Word by word, the left arrow
   moves to the previous word and the right arrow to the next; hold to keep
-  moving. Arrows do not create a selection; an existing range stays selected
-  while the cursor remains inside it. Tap a word if the panel has no context. Click the panel's tab
+  moving. Arrows do not create a selection; a selected word moves with the
+  arrow, so the selection becomes the one word the cursor lands on. Tap a word if the panel has no context. Click the panel's tab
   to collapse or expand it; drag the tab to resize the panel, and drag beyond
   its expansion limit to preview the opposite dock. Release while that preview
   is showing to switch docks.
@@ -84,11 +90,16 @@ or usage question.
   one you used last leads while it has places left, so pressing it again keeps
   going the same way; jumping somewhere new puts Back first again. Each reader
   keeps its last ten places.
-- **Keyboard:** while the reader has focus, Up/Down move between ayahs and
-  Left/Right move the word cursor in reading order. Shift with arrows extends
-  or shortens a range. Escape clears selected words, then the active word,
-  then the active ayah. Enter confirms a surah or page change; Escape closes
-  that control. Keyboard navigation then returns to the Mushaf.
+- **Keyboard:** while the reader has focus and the whole ayah is showing,
+  all four arrows move between ayahs. While a word is focused or selected,
+  Left/Right move one word in reading order, across ayahs, and Up/Down move to
+  the word at the same position on the line above or below; pressing the
+  opposite arrow next returns to the word just left. A selection of one whole
+  ayah or one word moves with the arrow. Shift with arrows extends or shortens
+  a range. Escape clears selected words, then the focused word, then the
+  active ayah. Tab does not leave the Mushaf. Enter confirms a surah or page
+  change; Escape closes that control. Keyboard navigation then returns to the
+  Mushaf.
 - **Continue studying:** keep the reader beside the conversation where the
   host supports it. Links in answers return to the passages being discussed.
   Opening a link activates its passage for Copy, Lastmarks, and current
