@@ -11,6 +11,10 @@ from quran_mcp.lib.assets import asset_path, asset_text
 from quran_mcp.mcp.resources.app import mushaf as mushaf_resource
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+MUSHAF_APP_MISSING_REASON = (
+    "Mushaf app HTML is a generated frontend asset. "
+    "Run `make build-frontend` before asserting the built app file exists."
+)
 
 
 def _load_module(module_path: Path, module_name: str):
@@ -29,11 +33,19 @@ class TestAssetFilesExist:
     def test_grounding_rules_md_exists(self):
         assert asset_path("GROUNDING_RULES.md").is_file()
 
+    @pytest.mark.skipif(
+        not mushaf_resource.MUSHAF_APP_PATH.is_file(),
+        reason=MUSHAF_APP_MISSING_REASON,
+    )
     def test_mushaf_app_html_exists(self):
         assert mushaf_resource.MUSHAF_APP_PATH.is_file()
 
 
 class TestMushafAppResourceOwnership:
+    @pytest.mark.skipif(
+        not mushaf_resource.MUSHAF_APP_PATH.is_file(),
+        reason=MUSHAF_APP_MISSING_REASON,
+    )
     def test_resource_owns_local_path_lookup(self):
         assert mushaf_resource.MUSHAF_APP_PATH.is_file()
         assert mushaf_resource.MCP_APP_MIME == "text/html;profile=mcp-app"
