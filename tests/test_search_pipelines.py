@@ -186,6 +186,12 @@ async def test_search_quran_dedup_keeps_highest_score(mock_settings):
             relevance_score=0.9,
             source_space_name="translation",
         ),
+        _make_memory(
+            content="SYNTHETIC_ARABIC_FIXTURE",
+            metadata={"ayah_key": "2:255", "edition_id": "ar-uthmani", "lang": "ar"},
+            relevance_score=0.1,
+            source_space_name="quran",
+        ),
     ]
     client = _make_goodmem_client(search_results=memories)
 
@@ -194,6 +200,7 @@ async def test_search_quran_dedup_keeps_highest_score(mock_settings):
     assert len(result.results) == 1
     assert result.results[0].ayah_key == "2:255"
     assert result.results[0].relevance_score == 0.9
+    assert result.results[0].text == "SYNTHETIC_ARABIC_FIXTURE"
 
 
 @pytest.mark.asyncio
