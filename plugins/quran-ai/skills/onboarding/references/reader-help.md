@@ -27,12 +27,13 @@ or usage question.
   a word in another ayah moves there and keeps what the panel was showing.
   An ayah number moves the cursor to the start of that ayah. While the
   recitation plays, a tap on any word moves the recitation to that word and
-  keeps what the panel was showing; a tap outside a selection still clears it. Hold a word still to step through three stages, all
-  timed from the moment the finger goes down: the whole ayah (618 ms by
-  default), the word alone (1000 ms), then cancel (1618 ms), which leaves
-  everything as it was; the stages repeat while the hold continues. The shown
-  stage commits on release. The base time and the multiplier between stages are
-  adjustable in Experiments. A tap on a word inside a selection keeps the
+  keeps what the panel was showing; a tap outside a selection still clears it. Hold a word still to step through three stages, each one
+  second long by default and timed from the moment the finger goes down: the
+  word alone (after 1 s), the whole ayah (after 2 s), then let go (after 3 s),
+  which leaves everything as it was; the stages repeat while the hold continues.
+  The shown stage commits on release. The stage length is adjustable in
+  Experiments. Everything selected looks the same, words or whole ayahs, with
+  an edge on the first and the last selected word only. A tap on a word inside a selection keeps the
   selection and moves the cursor there, which is where listening starts (inside
   a selection of whole ayahs, to the start of the tapped ayah while silent); a tap
   on a word outside clears the selection and focuses that word. A tap never
