@@ -9,7 +9,10 @@
 
   function copyText(btn: HTMLButtonElement) {
     const text = btn.dataset.copy ?? btn.textContent ?? "";
-    navigator.clipboard.writeText(text);
+    if (!navigator.clipboard?.writeText) return;
+    navigator.clipboard.writeText(text).catch(() => {
+      // Clipboard write rejected (e.g. permission denied) — button has no copied state to revert.
+    });
   }
 </script>
 
