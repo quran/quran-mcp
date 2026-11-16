@@ -23,7 +23,10 @@ from quran_mcp.lib.goodmem import GoodMemClient, GoodMemMemory
 from pydantic import BaseModel, ConfigDict, Field
 
 from quran_mcp.lib.config.settings import get_settings
+from quran_mcp.lib.editions.fetcher import EditionFetcherConfig
+from quran_mcp.lib.editions.fetcher.goodmem import fetch_from_goodmem
 from quran_mcp.lib.editions.registry import get_by_edition_id
+from quran_mcp.lib.quran.fetch import QuranEntry
 from quran_mcp.lib.search.common import (
     AyahMemoryRecord,
     SearchBackendError,
@@ -272,12 +275,12 @@ async def _enrich_arabic_text(
     for ayah_key, data in deduped_ayat.items():
         # Check if we already have ar-uthmani from _all_editions
         ar_uthmani = next(
-            (e for e in data.all_editions if e.edition_id == "ar-uthmani"),
+            (e for e in data.all_editions if e.edition_id == "ar-uthmani" and e.text.strip()),
             None
         )
         if ar_uthmani:
-            # Already have it, just update the text field
-            if data.lang != "ar" or data.edition_id != "ar-uthmani":
+            # Preserve valid primary Arabic; use the cache for other editions or blanks.
+            if data.lang != "ar" or data.edition_id != "ar-uthmani" or not data.text.strip():
                 data.text = ar_uthmani.text
         else:
             ayahs_needing_arabic.append(ayah_key)
@@ -286,6 +289,7 @@ async def _enrich_arabic_text(
         return
 
     logger.debug(f"Fetching ar-uthmani text for {len(ayahs_needing_arabic)} ayahs")
+    missing_ayahs = set(ayahs_needing_arabic)
 
     try:
         # Build filter for ar-uthmani edition and specific ayahs
@@ -304,13 +308,38 @@ async def _enrich_arabic_text(
         for memory in arabic_memories:
             data = memory_to_ayah_record(memory)
             ak = data.ayah_key
-            if ak in deduped_ayat:
+            if ak in missing_ayahs and data.edition_id == "ar-uthmani" and data.text.strip():
                 deduped_ayat[ak].text = data.text
+                missing_ayahs.discard(ak)
                 if not deduped_ayat[ak].url:
                     deduped_ayat[ak].url = data.url
 
+        if missing_ayahs:
+            # Preserve the existing lookup's filters; reuse bounded fetch headroom
+            # only for gaps. The fetch helper requires richer corpus metadata.
+            config = EditionFetcherConfig(
+                edition_type="quran",
+                goodmem_space=quran_space,
+                entry_factory=lambda key, text, meta: QuranEntry(ayah_key=key, text=text),
+            )
+            found, _gap = await fetch_from_goodmem(
+                goodmem_client, config, sorted(missing_ayahs), "ar-uthmani"
+            )
+            for ak, (text, metadata) in found.items():
+                if ak in missing_ayahs and metadata.get("edition_id") == "ar-uthmani" and text.strip():
+                    deduped_ayat[ak].text = text
+                    missing_ayahs.discard(ak)
+                    if not deduped_ayat[ak].url:
+                        deduped_ayat[ak].url = metadata.get("url", "")
+
     except Exception as e:
         raise SearchEnrichmentError("quran_arabic_text", str(e)) from e
+
+    if missing_ayahs:
+        raise SearchEnrichmentError(
+            "quran_arabic_text",
+            f"Missing ar-uthmani text for ayahs: {', '.join(sorted(missing_ayahs))}",
+        )
 
 
 def _build_translation_edition_metadata(resolved_ids: list[str]) -> dict[str, EditionInfo]:
