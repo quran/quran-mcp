@@ -1,6 +1,6 @@
 ---
 name: onboarding
-description: Guide a personal Quran discovery journey with the reader and study tools, drawing on relevant past conversations; offer an unexpected powerful verse for slow reflection; or explore the Quran's claims about God with an open mind and honest follow-up questions. Also use for quran.ai setup and reader-controls help.
+description: Guide a personal Quran discovery journey informed by relevant past conversations, offer an unexpected verse for slow reflection, or explore the Quran's claims about God with open-ended questions. Also use for quran.ai setup and reader-controls help. For a request that only opens the reader, call the reader directly.
 ---
 
 # Begin studying with quran.ai
@@ -88,7 +88,7 @@ Defaults are ready to use. Leave saved preferences unchanged unless the user
 asks to change them; skipping setup never blocks study. New readers follow
 the System appearance (Navy when the host or device is dark, Ivory when it is
 light) and open full screen where the host can show it. The recitation lane,
-Study tools in Quick send mode and the translation panel, which matches the
+Study tools in Quick send mode and the meaning panel, which matches the
 selection, start open at the top, with Prev and Next at the top of the right
 edge. On a wide reader Study tools starts at the right side instead. These
 defaults are the same for every language and country. Existing saved choices

@@ -1,6 +1,6 @@
 ---
 name: grounding-rules
-description: Apply quran.ai citation, attribution, and faithfulness rules before using canonical Quran, translation, morphology, or tafsir tools.
+description: Use when the person asks what a Quran passage says, requests a translation or tafsir, or asks what a Quranic word means. Retrieve and cite canonical evidence with quran.ai unless matching canonical evidence is already in context.
 ---
 # Grounding Rules for quran.ai MCP
 

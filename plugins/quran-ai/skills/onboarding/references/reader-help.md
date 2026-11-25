@@ -16,7 +16,7 @@ or usage question.
   word meanings. Keep in view moves an ayah only when needed to make it visible.
   The other option aligns it beside the translation or word meanings when an
   ayah navigation control is pressed or a word arrow crosses into another ayah.
-  Moving by screen instead offers Select first visible ayah.
+  Moving by screen instead offers **Move the cursor to the first visible ayah**.
   The reader's Settings control remains available where shown. If the user asks
   to open settings and `interactive_study_settings_open`
   is available, use it; do not invent settings tools or claim a preference was
@@ -35,16 +35,19 @@ or usage question.
   Experiments. Everything selected looks the same, words or whole ayahs, with
   an edge on the first and the last selected word only. A tap on a word inside a selection keeps the
   selection and moves the cursor there, which is where listening starts (inside
-  a selection of whole ayahs, to the start of the tapped ayah while silent); a tap
+  a selection of several whole ayahs, to the start of the tapped ayah while silent); a tap
   on a word outside clears the selection and focuses that word. A tap never
   grows or shrinks a selection: hold and drag to resize it, starting inside
   it, or starting outside and releasing inside it. A hold and drag entirely
   outside adds a separate selection. Tapping a selection of exactly one word
-  clears it. On touch a vertical movement scrolls, while a deliberate sideways
+  clears it. While the recitation is silent, tapping a word inside a selection
+  of exactly one whole ayah also clears the selection and focuses that word.
+  On touch a vertical movement scrolls, while a deliberate sideways
   movement out of the word along its line selects. Shift extends a range;
   Ctrl/Cmd adds or removes selected words, phrases or whole ayahs.
-- **Ask with passages:** **Study tools** starts open in **Quick send**: type a
-  question and send it with the current selection. Choose **Ledger** to keep
+- **Ask with passages:** **Study tools** starts open in **Quick send**. Type a
+  question and send the question with the subject. The subject is the selection
+  or, when the reader has no selection, the active ayah. Choose **Ledger** to keep
   selections with notes (**Add to ledger**). Tick notes and choose **Send to
   ChatGPT** (or **Send to Claude**) to add them to the prompt box, then write
   and send your question there. The current selection also reaches the AI as
@@ -67,8 +70,9 @@ or usage question.
   position (Top or Bottom), and Start minimized. Word by word, the left arrow
   moves to the previous word and the right arrow to the next; hold to keep
   moving. Arrows do not create a selection; a selected word moves with the
-  arrow, so the selection becomes the one word the cursor lands on. Tap a word if the panel has no context. Click the panel's tab
-  to collapse or expand it; drag the tab to resize the panel, and drag beyond
+  arrow, so the selection becomes the one word the cursor lands on. Tap a word
+  if the panel has no context. Click the meaning panel's tab to minimize or
+  expand the meaning panel. Drag the tab to resize the panel, and drag beyond
   its expansion limit to preview the opposite dock. Release while that preview
   is showing to switch docks.
 - **Copying:** Settings → More → Copy text previews selected text (or, with
@@ -91,7 +95,7 @@ or usage question.
   one you used last leads while it has places left, so pressing it again keeps
   going the same way; jumping somewhere new puts Back first again. Each reader
   keeps its last ten places.
-- **Keyboard:** while the reader has focus and the whole ayah is showing,
+- **Keyboard:** while the reader has keyboard focus and the whole ayah is showing,
   all four arrows move between ayahs. While a word is focused or selected,
   Left/Right move one word in reading order, across ayahs, and Up/Down move to
   the word at the same position on the line above or below; pressing the
@@ -103,9 +107,10 @@ or usage question.
   Mushaf.
 - **Continue studying:** keep the reader beside the conversation where the
   host supports it. Links in answers return to the passages being discussed.
-  Opening a link activates its passage for Copy, Lastmarks, and current
-  reader context, and Back returns to where you were. Ask about that active passage, or
-  select a more specific phrase. To keep passages for a later question, save
-  them in the Ledger. Follow useful links in the next answer to keep reading
+  Opening a link moves the cursor to the passage. A phrase or range link also
+  makes a selection. Copy, Lastmarks and reader context use the resulting
+  active ayah or selection. Back returns to the previous place. Ask about the
+  passage, or select a more specific phrase. To keep passages for a later
+  question, save them in the Ledger. Follow useful links in the next answer to keep reading
   and discovering. If the user asks to resume, follow the Interactive Study
   skill's current resume instructions.
