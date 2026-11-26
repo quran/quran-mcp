@@ -40,25 +40,42 @@ Answers link each cited ayah to quran.com.
 
 The plugin's skills are instructions only. They run no code and send nothing
 on their own. Every request goes through the quran.ai connector to the hosted
-service at `https://mcp.quran.ai`, which:
+service at `https://mcp.quran.ai`. The service uses what it receives to answer
+you, to keep itself running, and to see how much it is used:
 
-- receives the tool inputs Claude sends, such as verse references, search
-  terms, note text, and your reader selections, and logs tool requests with
-  their inputs for operation and improvement;
-- sends search text to Google's Gemini API to match passages by meaning, and
-  may send Arabic words and matching verse text to Voyage AI to rank
-  concordance results;
-- saves your reader position, selection, and options for 180 days after their
-  last change;
-- if you sign in with a Quran Foundation account, stores the email address,
-  name, and other profile details Quran Foundation provides, together with
-  your notes, saved places, and settings, until they are deleted;
-- stores feedback only when you ask Claude to send it.
+- The service receives the tool inputs Claude sends, such as verse references,
+  search terms, note text, and your reader selections. Its logs record each
+  tool request with its inputs, so that it can run and its faults can be found
+  and fixed. A separate diagnostic record keeps each tool request with the
+  full result it returned for at most 12 hours, to find faults and to draw
+  the samples below. The operator reads hourly summaries of the logs and of
+  that record: how many requests each tool receives and from which AI app,
+  how often the reader is opened, and a few sampled search queries, tafsir
+  editions, passages and word lookups with personal material removed. The
+  summaries, samples included, are kept until the operator deletes them.
+- To answer a search, the service sends your search text to Google's Gemini
+  API to match passages by meaning. To rank word-concordance results, it may
+  send the Arabic word and matching verse text to Voyage AI.
+- The reader saves your page, selection, and options so it can return you to
+  your place. The service deletes that saved place 180 days after its last
+  change.
+- If you sign in with a Quran Foundation account, the service keeps your
+  notes, saved places, and settings for you under your account, with the
+  email address, name, and other profile details Quran Foundation provides,
+  until they are deleted.
+- When you use the reader's listening feature, your browser processes your
+  voice on your own device. Your audio is never sent to the service. The
+  listening page sends your open reader only the matched word positions, the
+  page and selection to show, and memorization-test results. The service
+  holds the latest of these in memory until your reader collects them, for
+  at most 30 minutes after listening stops.
+- The service stores feedback or a reader bug report only when you ask Claude
+  to send feedback or press Send in the reader.
 
 The reader loads Quran page fonts and recitation audio from Quran Foundation's
-servers. The service doesn't sell personal information or build advertising
-profiles. Full details and retention periods are in the
-[privacy policy](https://mcp.quran.ai/privacy), and use of the service is
+servers. The service shows no advertising, builds no profiles of you from your
+content, and doesn't sell personal information. Full details and retention
+periods are in the [privacy policy](https://mcp.quran.ai/privacy), and use of the service is
 governed by the [terms of service](https://mcp.quran.ai/terms). Send privacy
 questions or deletion requests to nour@quran.com. For help, see the
 [documentation](https://mcp.quran.ai/documentation) and
