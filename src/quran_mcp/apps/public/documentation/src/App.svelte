@@ -318,6 +318,7 @@
     (window as any).__copyCode = function (button: HTMLButtonElement) {
       const code = button.closest(".code-block")?.querySelector("code");
       if (!code) return;
+      if (!navigator.clipboard?.writeText) return;
       navigator.clipboard.writeText(code.textContent || "").then(() => {
         button.textContent = "copied";
         button.classList.add("copied");
@@ -325,15 +326,20 @@
           button.textContent = "copy";
           button.classList.remove("copied");
         }, 1400);
+      }).catch(() => {
+        // Clipboard write rejected (e.g. permission denied) — leave button unchanged.
       });
     };
     (window as any).__copyText = function (button: HTMLButtonElement) {
       const value = button.getAttribute("data-copy") || button.textContent || "";
+      if (!navigator.clipboard?.writeText) return;
       navigator.clipboard.writeText(value).then(() => {
         button.classList.add("copied");
         setTimeout(() => {
           button.classList.remove("copied");
         }, 900);
+      }).catch(() => {
+        // Clipboard write rejected (e.g. permission denied) — leave button unchanged.
       });
     };
   }
