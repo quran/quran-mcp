@@ -8,9 +8,18 @@ import pytest
 from quran_mcp.lib.config.settings import clear_settings_cache, get_settings
 
 
+BASE_SERVER_CONFIG = """
+server:
+  port: 8088
+"""
+
+
 def _write_config(tmp_path, base: str, local: str | None = None) -> str:
+    body = dedent(base).strip()
+    if "server:" not in body:
+        body = f"{BASE_SERVER_CONFIG.strip()}\n{body}"
     config_path = tmp_path / "config.yml"
-    config_path.write_text(dedent(base).strip() + "\n", encoding="utf-8")
+    config_path.write_text(body + "\n", encoding="utf-8")
     if local is not None:
         (tmp_path / "config.local.yml").write_text(
             dedent(local).strip() + "\n",
@@ -119,6 +128,7 @@ def test_get_settings_parses_expose_tags_from_comma_separated_env(
         tmp_path,
         """
         server:
+          port: 8088
           profile: public
           expose_tags: null
         """,
@@ -161,6 +171,7 @@ def test_get_settings_parses_expose_tags_from_json_array_env(
         tmp_path,
         """
         server:
+          port: 8088
           profile: public
           expose_tags: null
         """,

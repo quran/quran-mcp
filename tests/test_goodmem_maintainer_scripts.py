@@ -22,6 +22,12 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 MEMORY_RETRIEVE_PATH = REPO_ROOT / "scripts" / ".maintainer" / "goodmem" / "memory_retrieve.py"
 MEMORY_CREATE_PATH = REPO_ROOT / "scripts" / ".maintainer" / "goodmem" / "memory_create.py"
 
+if not MEMORY_RETRIEVE_PATH.is_file() or not MEMORY_CREATE_PATH.is_file():
+    pytest.skip(
+        "maintainer goodmem scripts are not checked in (scripts/.maintainer/ is gitignored)",
+        allow_module_level=True,
+    )
+
 memory_retrieve = _load_module("test_memory_retrieve", MEMORY_RETRIEVE_PATH)
 memory_create = _load_module("test_memory_create", MEMORY_CREATE_PATH)
 

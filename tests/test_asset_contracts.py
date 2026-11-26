@@ -12,6 +12,11 @@ from quran_mcp.mcp.resources.app import mushaf as mushaf_resource
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 
+requires_built_frontend = pytest.mark.skipif(
+    not mushaf_resource.MUSHAF_APP_PATH.is_file(),
+    reason="mushaf app asset is not built; run `make build-frontend` first",
+)
+
 
 def _load_module(module_path: Path, module_name: str):
     spec = importlib.util.spec_from_file_location(module_name, module_path)
@@ -29,11 +34,13 @@ class TestAssetFilesExist:
     def test_grounding_rules_md_exists(self):
         assert asset_path("GROUNDING_RULES.md").is_file()
 
+    @requires_built_frontend
     def test_mushaf_app_html_exists(self):
         assert mushaf_resource.MUSHAF_APP_PATH.is_file()
 
 
 class TestMushafAppResourceOwnership:
+    @requires_built_frontend
     def test_resource_owns_local_path_lookup(self):
         assert mushaf_resource.MUSHAF_APP_PATH.is_file()
         assert mushaf_resource.MCP_APP_MIME == "text/html;profile=mcp-app"
