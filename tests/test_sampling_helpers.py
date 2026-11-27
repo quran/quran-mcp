@@ -393,6 +393,18 @@ class TestRuntimeProviderSelection:
         assert handler is sentinel
         assert calls == [("anthropic", "gpt-5")]
 
+    def test_anthropic_default_model_is_not_retired(self, monkeypatch: pytest.MonkeyPatch):
+        # claude-sonnet-4-5-20250929 is retired by Anthropic on 2026-11-30.
+        monkeypatch.setattr(sampling_runtime_mod, "Anthropic", lambda **_kwargs: object())
+
+        config = sampling_runtime_mod._configure_anthropic(
+            SamplingSettings(provider="anthropic", anthropic_api_key="test-key"),
+            None,
+        )
+
+        assert config is not None
+        assert config.default_model == "claude-sonnet-4-6"
+
 
 class _FakeOpenAIResponsesClient:
     def __init__(self, response):

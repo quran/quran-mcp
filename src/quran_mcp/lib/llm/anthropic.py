@@ -50,7 +50,7 @@ class AnthropicProvider:
         api_key: str,
         *,
         base_url: str | None = None,
-        default_model: str = "claude-sonnet-4-5-20250929",
+        default_model: str = "claude-sonnet-4-6",
         default_max_tokens: int = 4096,
     ):
         """Initialize Anthropic provider.
@@ -58,7 +58,7 @@ class AnthropicProvider:
         Args:
             api_key: Anthropic API key.
             base_url: Optional custom base URL (for proxies/self-hosted).
-            default_model: Default model to use. Defaults to claude-sonnet-4-5-20250929.
+            default_model: Default model to use. Defaults to claude-sonnet-4-6.
             default_max_tokens: Default max tokens for responses. Defaults to 4096.
         """
         self.client = AsyncAnthropic(

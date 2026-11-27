@@ -29,7 +29,7 @@ if TYPE_CHECKING:
 logger = logging.getLogger(__name__)
 
 OPENAI_DEFAULT_MODEL = "gpt-5.1"
-ANTHROPIC_DEFAULT_MODEL = "claude-sonnet-4-5-20250929"
+ANTHROPIC_DEFAULT_MODEL = "claude-sonnet-4-6"
 GEMINI_DEFAULT_MODEL = "gemini-3-pro-preview"
 OPENROUTER_DEFAULT_MODEL = "deepseek/deepseek-v3.2:nitro"
 RETRYABLE_STATUS_CODES = {502, 503, 429}
